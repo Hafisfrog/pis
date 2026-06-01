@@ -1,51 +1,55 @@
 import { useState } from "react";
 import Navbar from "../components/Navbar";
+import bangPhoto from "../assets/bangpng.png";
+import baboPhoto from "../assets/babopng.png";
 
-const slides = [
+const leaders = [
   {
-    theme: "blue",
-    eyebrow: "Islamic Education",
-    title: "โรงเรียนพัฒนาอิสลาม",
-    role: "สร้างอนาคตด้วยการศึกษา",
-    name: "คู่คุณธรรม",
-    description: "ส่งเสริมการเรียนรู้ทั้งด้านวิชาการ ศาสนา และการใช้ชีวิตในสังคม",
-    gradient: "from-sky-500 via-blue-600 to-cyan-500",
-    accent: "text-sky-500",
+    photo: bangPhoto,
+    imageClass: "",
+    name: "นายโซฟูวัน มารูดิน",
+    role: "รองผู้อำนวยการ",
+  },
+  {
+    photo: baboPhoto,
+    imageClass: "scale-[1.85]",
+    name: "แวอับดุลเลาะ มารูดิน",
+    role: "ผู้รับใบอนุญาต",
   },
 ];
 
 export default function Home() {
-  const [activeSlide, setActiveSlide] = useState(0);
-
-  const slide = slides[activeSlide];
+  const [activeLeader, setActiveLeader] = useState(0);
+  const currentLeader = leaders[activeLeader];
+  const sideLeader = leaders[(activeLeader + 1) % leaders.length];
 
   const goToPrevious = () => {
-    setActiveSlide((current) => (current - 1 + slides.length) % slides.length);
+    setActiveLeader((current) => (current - 1 + leaders.length) % leaders.length);
   };
 
   const goToNext = () => {
-    setActiveSlide((current) => (current + 1) % slides.length);
+    setActiveLeader((current) => (current + 1) % leaders.length);
   };
 
   return (
     <div className="min-h-screen bg-white">
-      <Navbar activeTheme={slide.theme} />
+      <Navbar activeTheme="blue" />
 
-      <section className={`relative min-h-[100svh] overflow-hidden bg-gradient-to-br ${slide.gradient}`}>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_10%,rgba(255,255,255,0.22),transparent_22%),radial-gradient(circle_at_20%_85%,rgba(255,255,255,0.14),transparent_25%)]" />
+      <section className="relative min-h-[100svh] overflow-hidden bg-gradient-to-br from-sky-500 via-blue-600 to-cyan-500">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_72%_12%,rgba(255,255,255,0.24),transparent_22%),radial-gradient(circle_at_18%_84%,rgba(255,255,255,0.16),transparent_25%)]" />
         <div className="absolute inset-0 bg-black/5" />
-        <p className="pointer-events-none absolute left-1/2 top-[42%] hidden -translate-x-1/2 -translate-y-1/2 select-none text-[18vw] font-black uppercase leading-none tracking-normal text-white/12 sm:block">
-          COUNCIL
+        <p className="pointer-events-none absolute left-1/2 top-[43%] hidden -translate-x-1/2 -translate-y-1/2 select-none text-[17vw] font-black uppercase leading-none tracking-normal text-white/10 sm:block">
+          PATTANA
         </p>
-        <p className="pointer-events-none absolute bottom-0 left-1/2 hidden -translate-x-1/2 select-none text-[11vw] font-black uppercase leading-none tracking-normal text-white/10 sm:block">
-          STUDENT
+        <p className="pointer-events-none absolute bottom-0 left-1/2 hidden -translate-x-1/2 select-none text-[10vw] font-black uppercase leading-none tracking-normal text-white/10 sm:block">
+          ISLAM
         </p>
 
         <button
           type="button"
           aria-label="สไลด์ก่อนหน้า"
           onClick={goToPrevious}
-          className="absolute bottom-8 left-5 z-20 grid h-10 w-10 place-items-center rounded-full border border-white/35 bg-white/10 text-3xl leading-none text-white transition hover:bg-white/20 sm:bottom-auto sm:top-1/2 sm:h-12 sm:w-12 sm:-translate-y-1/2 sm:text-4xl md:left-8 xl:left-12"
+          className="absolute bottom-8 left-5 z-20 grid h-10 w-10 place-items-center rounded-full border border-white/40 bg-white/10 text-3xl leading-none text-white transition hover:bg-white/20 sm:bottom-auto sm:top-1/2 sm:h-12 sm:w-12 sm:-translate-y-1/2 sm:text-4xl md:left-8 xl:left-12"
         >
           ‹
         </button>
@@ -54,51 +58,63 @@ export default function Home() {
           type="button"
           aria-label="สไลด์ถัดไป"
           onClick={goToNext}
-          className="absolute bottom-8 right-5 z-20 grid h-10 w-10 place-items-center rounded-full border border-white/35 bg-white/10 text-3xl leading-none text-white transition hover:bg-white/20 sm:bottom-auto sm:top-1/2 sm:h-12 sm:w-12 sm:-translate-y-1/2 sm:text-4xl md:right-8 xl:right-12"
+          className="absolute bottom-8 right-5 z-20 grid h-10 w-10 place-items-center rounded-full border border-white/40 bg-white/10 text-3xl leading-none text-white transition hover:bg-white/20 sm:bottom-auto sm:top-1/2 sm:h-12 sm:w-12 sm:-translate-y-1/2 sm:text-4xl md:right-8 xl:right-12"
         >
           ›
         </button>
 
         <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-7xl items-center px-5 pb-24 pt-32 sm:px-6 sm:pt-36 lg:px-10">
-          <div className="grid w-full items-center gap-8 xl:grid-cols-[0.8fr_1.4fr_0.8fr]">
-            <ProfileCard muted name="นางสาวอามีเนาะ" role="รองประธาน" />
+          <div className="grid w-full items-center gap-8 xl:grid-cols-[0.85fr_1.3fr_0.85fr]">
+            <ProfileCard
+              photo={sideLeader.photo}
+              imageClass={sideLeader.imageClass}
+              name={sideLeader.name}
+              role={sideLeader.role}
+              muted
+            />
 
-            <div className="order-first mx-auto max-w-4xl text-center text-white xl:order-none">
-              <p className="mx-auto mb-4 max-w-full text-xs font-bold uppercase tracking-[0.28em] text-white/75 sm:text-sm sm:tracking-[0.45em]">
-                {slide.eyebrow}
+            <div className="order-first mx-auto flex max-w-4xl flex-col items-center text-center text-white xl:order-none">
+              <p className="mx-auto mb-5 text-xs font-bold uppercase tracking-[0.28em] text-white/75 sm:text-sm sm:tracking-[0.45em]">
+                Islamic Education
               </p>
-              <h1 className="mx-auto mb-6 max-w-4xl break-words text-4xl font-black leading-tight text-white drop-shadow-lg [overflow-wrap:anywhere] sm:text-5xl md:text-6xl xl:text-7xl">
-                {slide.title}
-              </h1>
-              <div className="mx-auto mb-7 max-w-3xl">
-                <p className="mx-auto mb-3 max-w-2xl break-words text-lg font-extrabold text-white [overflow-wrap:anywhere] sm:text-2xl lg:text-3xl">
-                  {slide.role}
-                </p>
-                <p className="break-words text-4xl font-black leading-tight text-white [overflow-wrap:anywhere] sm:text-5xl lg:text-6xl">
-                  {slide.name}
-                </p>
+
+              <div className="relative flex w-full max-w-[420px] flex-col items-center sm:max-w-[520px] lg:max-w-[580px]">
+                <div className="absolute inset-x-8 bottom-20 h-32 rounded-full bg-white/20 blur-2xl" />
+                <img
+                  key={currentLeader.name}
+                  src={currentLeader.photo}
+                  alt={currentLeader.name}
+                  className={`relative z-10 max-h-[54vh] w-auto max-w-full object-contain drop-shadow-2xl transition duration-300 sm:max-h-[60vh] lg:max-h-[64vh] ${currentLeader.imageClass}`}
+                />
+                <div className="relative z-20 -mt-8 w-full max-w-md rounded-2xl bg-white/92 px-6 py-5 text-center shadow-2xl backdrop-blur-md sm:-mt-10">
+                  <h1 className="text-2xl font-black leading-tight text-slate-950 sm:text-4xl">
+                    {currentLeader.name}
+                  </h1>
+                  <p className="mt-2 text-lg font-extrabold text-blue-600 sm:text-2xl">
+                    {currentLeader.role}
+                  </p>
+                </div>
               </div>
-              <p className="mx-auto mb-8 max-w-2xl text-base font-semibold leading-relaxed text-white/85 sm:text-lg lg:text-xl">
-                {slide.description}
-              </p>
-              <button className={`w-full max-w-sm bg-white px-6 py-4 text-base font-extrabold ${slide.accent} shadow-2xl transition hover:-translate-y-0.5 sm:w-auto sm:px-9 sm:text-lg`}>
-                ทำความรู้จักเพิ่มเติม ↗
-              </button>
             </div>
 
-            <ProfileCard name="นายมูฮัมหมัด" role="เลขานุการ" />
+            <ProfileCard
+              photo={sideLeader.photo}
+              imageClass={sideLeader.imageClass}
+              name={sideLeader.name}
+              role={sideLeader.role}
+            />
           </div>
         </div>
 
-        <div className="absolute bottom-10 left-1/2 z-20 flex -translate-x-1/2 gap-3 sm:bottom-8">
-          {slides.map((item, index) => (
+        <div className="absolute bottom-10 left-1/2 z-20 flex -translate-x-1/2 gap-3">
+          {leaders.map((leader, index) => (
             <button
-              key={item.theme}
+              key={leader.name}
               type="button"
               aria-label={`ไปยังสไลด์ ${index + 1}`}
-              onClick={() => setActiveSlide(index)}
+              onClick={() => setActiveLeader(index)}
               className={`h-3 rounded-full transition-all ${
-                activeSlide === index ? "w-10 bg-white" : "w-3 bg-white/45 hover:bg-white/70"
+                activeLeader === index ? "w-10 bg-white" : "w-3 bg-white/45 hover:bg-white/70"
               }`}
             />
           ))}
@@ -117,16 +133,18 @@ export default function Home() {
   );
 }
 
-function ProfileCard({ name, role, muted = false }) {
+function ProfileCard({ name, role, photo, imageClass = "", muted = false }) {
   return (
-    <div className={`hidden justify-center xl:flex ${muted ? "opacity-45" : "opacity-75"}`}>
+    <div className={`hidden justify-center xl:flex ${muted ? "opacity-55" : "opacity-70"}`}>
       <div className="relative h-[420px] w-[240px] overflow-hidden rounded-t-full bg-white/20 shadow-2xl ring-1 ring-white/25 backdrop-blur-sm 2xl:h-[460px] 2xl:w-[270px]">
-        <div className="absolute inset-x-8 top-12 h-36 rounded-full bg-white/45" />
-        <div className="absolute left-1/2 top-20 h-28 w-28 -translate-x-1/2 rounded-full bg-slate-900/75" />
-        <div className="absolute bottom-0 left-1/2 h-72 w-56 -translate-x-1/2 rounded-t-[5rem] bg-slate-950/70" />
-        <div className="absolute bottom-8 left-5 right-5 rounded-lg bg-white/85 p-4 text-center">
+        <img
+          src={photo}
+          alt={name}
+          className={`absolute inset-x-0 bottom-0 mx-auto h-full max-h-none w-auto max-w-none object-contain object-bottom ${imageClass}`}
+        />
+        <div className="absolute bottom-8 left-5 right-5 rounded-lg bg-white/82 p-4 text-center shadow-lg backdrop-blur">
           <p className="text-sm font-black text-slate-900">{name}</p>
-          <p className="text-xs font-bold text-slate-500">{role}</p>
+          <p className="text-xs font-bold text-blue-600">{role}</p>
         </div>
       </div>
     </div>

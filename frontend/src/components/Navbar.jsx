@@ -43,9 +43,10 @@ export default function Navbar({ activeTheme = "pink" }) {
               {item.label}
             </Link>
           ))}
-          <button className={`rounded-full px-6 py-3 text-sm font-extrabold text-white shadow-lg transition ${activeColor}`}>
+          {/* เข้าสู่ระบบทีหลัง */}
+          {/* <button className={`rounded-full px-6 py-3 text-sm font-extrabold text-white shadow-lg transition ${activeColor}`}>
             เข้าสู่ระบบ
-          </button>
+          </button> */}
         </div>
 
         <button
