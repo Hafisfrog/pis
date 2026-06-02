@@ -2,6 +2,7 @@ import { useState } from "react";
 import Navbar from "../components/Navbar";
 import bangPhoto from "../assets/bangpng.png";
 import baboPhoto from "../assets/babopng.png";
+import logoPhoto from "../assets/logopis.jpg";
 
 const leaders = [
   {
@@ -17,6 +18,11 @@ const leaders = [
     role: "ผู้รับใบอนุญาต",
   },
 ];
+
+const facebookPageUrl = "https://www.facebook.com/pattanaislamic";
+const facebookPluginUrl = `https://www.facebook.com/plugins/page.php?href=${encodeURIComponent(
+  facebookPageUrl,
+)}&tabs=timeline&width=500&height=620&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true`;
 
 export default function Home() {
   const [activeLeader, setActiveLeader] = useState(0);
@@ -121,7 +127,92 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-white py-20">
+      <section className="relative overflow-hidden bg-slate-50 py-20 sm:py-24">
+        <div className="absolute inset-x-0 bottom-0 h-1 bg-gradient-to-r from-cyan-400 via-blue-600 to-sky-500" />
+        <div className="mx-auto grid max-w-7xl items-center gap-12 px-6 lg:grid-cols-[0.92fr_1fr] lg:px-10">
+          <div>
+            <p className="mb-4 text-xs font-black uppercase tracking-[0.42em] text-sky-500 sm:text-sm">
+              Official Social Media
+            </p>
+            <h2 className="max-w-xl text-5xl font-black leading-[1.05] text-slate-950 sm:text-6xl lg:text-7xl">
+              ติดตามข่าวสาร
+              <span className="block text-sky-500">& กิจกรรมล่าสุด</span>
+            </h2>
+            <p className="mt-7 max-w-2xl border-l-4 border-slate-300 pl-5 text-lg font-bold leading-9 text-slate-600">
+              รับข่าวสาร ประกาศสำคัญ และภาพบรรยากาศกิจกรรมต่างๆ จากโรงเรียนพัฒนาอิสลาม
+              สดใหม่ส่งตรงจากหน้าแฟนเพจ
+            </p>
+            <div className="mt-9 flex flex-wrap items-center gap-5">
+              <a
+                href={facebookPageUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex h-14 min-w-64 items-center justify-center gap-3 bg-blue-600 px-7 text-base font-black text-white shadow-xl shadow-blue-600/25 transition hover:bg-blue-700"
+              >
+                <span className="grid h-6 w-6 place-items-center rounded-full bg-white text-sm font-black text-blue-600">
+                  f
+                </span>
+                ไปที่หน้าเพจ
+              </a>
+              <div className="flex items-center gap-3">
+                <div className="grid h-12 w-12 place-items-center rounded-full bg-white text-sky-500 shadow-lg ring-1 ring-slate-200">
+                  +
+                </div>
+                <div>
+                  <p className="text-xs font-black uppercase tracking-[0.18em] text-slate-400">
+                    Followers
+                  </p>
+                  <p className="text-xl font-black text-slate-950">1.2K+</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="relative mx-auto w-full max-w-[520px]">
+            <div className="absolute -right-4 top-4 h-full w-full bg-sky-500" />
+            <div className="relative bg-white p-4 shadow-2xl ring-1 ring-slate-200 sm:p-5">
+              <div className="overflow-hidden rounded-xl border border-slate-200 bg-white">
+                <div className="h-7 bg-blue-600 text-center text-sm font-black text-white">
+                  Follow
+                </div>
+                <div className="border-b border-slate-200 p-4">
+                  <div className="flex items-center gap-3">
+                    <img
+                      src={logoPhoto}
+                      alt="Pattana Islam Educational Foundation"
+                      className="h-11 w-11 rounded-full object-cover ring-1 ring-slate-200"
+                    />
+                    <div>
+                      <p className="text-base font-black text-slate-950">
+                        โรงเรียนพัฒนาอิสลาม
+                      </p>
+                      <p className="text-sm font-bold text-slate-500">
+                        Pattana Islam Educational Foundation
+                      </p>
+                    </div>
+                  </div>
+                  <p className="mt-4 text-sm font-semibold leading-6 text-slate-700">
+                    ติดตามประกาศ กิจกรรม และภาพบรรยากาศล่าสุดของโรงเรียนผ่านหน้าแฟนเพจอย่างเป็นทางการ
+                  </p>
+                </div>
+                <div className="bg-sky-100 p-5">
+                  <iframe
+                    title="Pattana Islamic Facebook Page"
+                    src={facebookPluginUrl}
+                    className="h-[620px] w-full overflow-hidden rounded-lg bg-white shadow-lg"
+                    style={{ border: "none" }}
+                    scrolling="no"
+                    frameBorder="0"
+                    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="hidden">
         <div className="mx-auto max-w-7xl px-6 text-center">
           <p className="mb-3 text-sm font-bold uppercase tracking-[0.45em] text-slate-400">
             Latest Updates
@@ -135,7 +226,7 @@ export default function Home() {
 
 function ProfileCard({ name, role, photo, imageClass = "", muted = false }) {
   return (
-    <div className={`hidden justify-center xl:flex ${muted ? "opacity-55" : "opacity-70"}`}>
+    <div className={`hidden xl:flex ${muted ? "justify-end opacity-55" : "justify-start opacity-70"}`}>
       <div className="relative h-[420px] w-[240px] overflow-hidden rounded-t-full bg-white/20 shadow-2xl ring-1 ring-white/25 backdrop-blur-sm 2xl:h-[460px] 2xl:w-[270px]">
         <img
           src={photo}
