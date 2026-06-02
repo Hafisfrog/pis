@@ -1,23 +1,36 @@
 import Navbar from "../components/Navbar";
 
-export default function News() {
+const text = {
+  th: {
+    title: "ข่าวสารโรงเรียน",
+    cardTitle: "กิจกรรมวันวิชาการ",
+    body: "โรงเรียนจัดกิจกรรมส่งเสริมการเรียนรู้และการแสดงผลงานนักเรียน",
+  },
+  en: {
+    title: "School News",
+    cardTitle: "Academic Fair Activities",
+    body: "The school organizes activities to support learning and showcase student work.",
+  },
+  ms: {
+    title: "Berita Sekolah",
+    cardTitle: "Aktiviti Hari Akademik",
+    body: "Sekolah menganjurkan aktiviti untuk menyokong pembelajaran dan mempamerkan hasil kerja pelajar.",
+  },
+};
+
+export default function News({ language = "th", setLanguage }) {
+  const content = text[language];
+
   return (
     <div>
-      <Navbar />
+      <Navbar language={language} setLanguage={setLanguage} />
 
-      <div className="pt-32 px-6">
-        <h1 className="text-5xl font-bold text-center text-blue-700 mb-10">
-          ข่าวสารโรงเรียน
-        </h1>
+      <div className="px-6 pt-32">
+        <h1 className="mb-10 text-center text-5xl font-bold text-blue-700">{content.title}</h1>
 
-        <div className="max-w-5xl mx-auto bg-white p-8 rounded-3xl shadow-lg">
-          <h2 className="text-3xl font-bold mb-4">
-            กิจกรรมวันวิชาการ
-          </h2>
-
-          <p className="text-gray-600">
-            โรงเรียนจัดกิจกรรมส่งเสริมการเรียนรู้และการแสดงผลงานนักเรียน
-          </p>
+        <div className="mx-auto max-w-5xl rounded-3xl bg-white p-8 shadow-lg">
+          <h2 className="mb-4 text-3xl font-bold">{content.cardTitle}</h2>
+          <p className="text-gray-600">{content.body}</p>
         </div>
       </div>
     </div>

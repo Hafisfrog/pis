@@ -1,19 +1,30 @@
 import Navbar from "../components/Navbar";
 
-export default function About() {
+const text = {
+  th: {
+    title: "เกี่ยวกับโรงเรียน",
+    body: "โรงเรียนมุ่งเน้นการพัฒนาผู้เรียนทั้งด้านวิชาการ คุณธรรม และเทคโนโลยี",
+  },
+  en: {
+    title: "About The School",
+    body: "The school focuses on developing learners in academics, morality, and technology.",
+  },
+  ms: {
+    title: "Tentang Sekolah",
+    body: "Sekolah memberi tumpuan kepada pembangunan pelajar dalam bidang akademik, akhlak, dan teknologi.",
+  },
+};
+
+export default function About({ language = "th", setLanguage }) {
+  const content = text[language];
+
   return (
     <div>
-      <Navbar />
+      <Navbar language={language} setLanguage={setLanguage} />
 
-      <div className="pt-32 px-6 max-w-5xl mx-auto">
-        <h1 className="text-5xl font-bold text-blue-700 mb-8">
-          เกี่ยวกับโรงเรียน
-        </h1>
-
-        <p className="text-lg text-gray-700 leading-relaxed">
-          โรงเรียนมุ่งเน้นการพัฒนาผู้เรียนทั้งด้านวิชาการ
-          คุณธรรม และเทคโนโลยี
-        </p>
+      <div className="mx-auto max-w-5xl px-6 pt-32">
+        <h1 className="mb-8 text-5xl font-bold text-blue-700">{content.title}</h1>
+        <p className="text-lg leading-relaxed text-gray-700">{content.body}</p>
       </div>
     </div>
   );
